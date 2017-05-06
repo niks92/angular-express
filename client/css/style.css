@@ -1,0 +1,22 @@
+
+
+.input-fields-block{
+    width: 100%;
+}
+
+label {
+    font-size: 12px
+}
+
+.input-fields-block {
+    margin-top: 15px;
+}
+
+.active{
+    color: #fff;
+    background: #337ab7;
+}
+
+form{
+    margin-top: 20px;
+}

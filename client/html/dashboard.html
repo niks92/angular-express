@@ -1,0 +1,57 @@
+<div class="container">
+
+    <form>
+        <div class="row">
+            <div class="col-sm-12">
+                <legend>Calculate simple and compound interest</legend>
+                <div class="btn-group" data-toggle="buttons">
+                    <label ng-class="(home.selectedInterest == 'compound') ? ['btn', 'btn-default', 'active'] : ['btn', 'btn-default']">
+                        <input type="radio" id="compount" ng-click="home.selectInterest('compound')" name="interest-choice" value="1" />Compound Interest
+                    </label>
+                    <label ng-class="(home.selectedInterest == 'simple') ? ['btn', 'btn-default', 'active'] : ['btn', 'btn-default']">
+                        <input type="radio" id="simple" ng-click="home.selectInterest('simple')" name="interest-choice" value="2" /> Simple Interest
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-fields-block">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Principal</label>
+                        <input required class="form-control" ng-model="home.amount" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Rate of interest(%)</label>
+                        <input required class="form-control" ng-model="home.rate" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Time period(years)</label>
+                        <input required class="form-control" ng-model="home.years" />
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="home.selectedInterest == 'compound'">
+                    <div class="form-group">
+                        <label class="control-label">Compound frequency(yearly, half yearly etc.)</label>
+                        <select  required class="form-control" ng-model="home.times">
+                            <option value="1"> Yearly </option>
+                            <option value="0.5"> Half Yearly </option>
+                            <option value="0.25"> Quarterly </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12" ng-if="home.finalAmount">
+                    <p class="help-block">Calculated interest: {{ home.calculatedInterest | roundOffValue}}</p>
+                    <p class="help-block">Total amount: {{home.finalAmount | roundOffValue}} </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center text-danger">{{home.errorMessage}}</div>
+        <input type="submit" onclick="event.preventDefault()" class="btn btn-primary" value="Calculate" ng-click="home.calculateInterest($event)">
+    </form>
+</div>
